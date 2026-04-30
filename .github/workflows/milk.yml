@@ -1,0 +1,16 @@
+name: milk
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send webhook
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{"content":"https://tenor.com/view/glass-of-milk-milk-pour-some-milk-gimme-some-milk-beautylicious-gif-16611440"}' \
+          ${{ secrets.WEBHOOK_URL }}
