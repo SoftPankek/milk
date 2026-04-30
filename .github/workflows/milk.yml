@@ -9,8 +9,13 @@ jobs:
   send:
     runs-on: ubuntu-latest
     steps:
-      - name: Send webhook
+      - name: Send 5 milk webhooks
         run: |
-          curl -X POST -H "Content-Type: application/json" \
-          -d '{"content":"https://tenor.com/view/glass-of-milk-milk-pour-some-milk-gimme-some-milk-beautylicious-gif-16611440"}' \
-          ${{ secrets.WEBHOOK_URL }}
+          for i in {1..5}
+          do
+            curl -X POST -H "Content-Type: application/json" \
+            -d '{"content":"https://tenor.com/view/glass-of-milk-milk-pour-some-milk-gimme-some-milk-beautylicious-gif-16611440"}' \
+            ${{ secrets.WEBHOOK_URL }}
+
+            sleep 1
+          done
